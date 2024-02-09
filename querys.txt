@@ -1,0 +1,35 @@
+
+
+
+
+
+------------------------------------------
+------------------------------------------
+create database LAP_GEPP collate SQL_Latin1_General_CP1_CI_AS
+go
+use LAP_GEPP
+go
+create table Epp
+(
+IdEpp int identity primary key,
+Descripcion varchar(50)
+)
+go
+create table Colaborador
+(
+IdColaborador int identity primary key,
+DocIdentidad varchar(20),
+Nombres varchar(120),
+)
+go
+create table Asignacion
+(
+IdAsignacion int identity primary key,
+IdColaborador int not null constraint Asignacion_Colaborador_fk references Colaborador,
+IdEpp int not null constraint Asignacion_Epp_fk references Epp,
+Cantidad int not null,
+FechaAsignacion datetime not null,
+FechaRenovacion datetime,
+FechaRecepcion datetime,
+FlgRecibido bit default 0 not null,
+)
